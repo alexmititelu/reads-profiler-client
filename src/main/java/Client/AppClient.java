@@ -18,6 +18,8 @@ public class AppClient {
     PrintWriter out = null;
     BufferedReader in = null;
 
+    MainFrame mainFrame = null;
+
     public MainFrame getMainFrame() {
         return mainFrame;
     }
@@ -34,7 +36,6 @@ public class AppClient {
         this.mainFrame = mainFrame;
     }
 
-    MainFrame mainFrame = null;
 
     public AppClient() {
         init();

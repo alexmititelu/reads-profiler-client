@@ -4,6 +4,7 @@ package GUI;
 import Client.AppClient;
 import GUI.Authentification.CreateAccount;
 import GUI.Authentification.LoginDialog;
+import GUI.Library.Library;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.net.Socket;
 
 public class MainFrame extends JFrame {
 
-    private Socket socket = null;
+    private Library library = null;
 
     private JButton loginButton = null;
     private JButton createAccountButton = null;
@@ -22,6 +23,7 @@ public class MainFrame extends JFrame {
 
     private JButton logoutButton = null;
 
+    private AppClient client = null;
 
     private boolean loggedIn = false;
 
@@ -33,7 +35,6 @@ public class MainFrame extends JFrame {
         this.loggedIn = loggedIn;
     }
 
-    private AppClient client = null;
 
     public AppClient getClient() {
         return client;
@@ -84,10 +85,25 @@ public class MainFrame extends JFrame {
         this.remove(createAccountButton);
 
         loggedInUser = new JButton(username + "s Library");
+        loggedInUser.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                library = new Library(client);
+            }
+        });
         loggedInUser.setVisible(true);
         this.add(loggedInUser);
 
         logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                remove(loggedInUser);
+                remove(logoutButton);
+                loggedIn = false;
+                revalidate();
+                init();
+                revalidate();
+            }
+        });
         logoutButton.setVisible(true);
         this.add(logoutButton);
 //        repaint();
