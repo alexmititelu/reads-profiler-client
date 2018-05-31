@@ -74,6 +74,7 @@ public class LoginDialog extends JDialog {
                             JOptionPane.INFORMATION_MESSAGE);
                     succeeded = true;
                     parentFrame.getClient().getMainFrame().setLoggedIn(true);
+                    parentFrame.setUsername(getUsername());
                     dispose();
                 } else {
                     JOptionPane.showMessageDialog(LoginDialog.this,
@@ -120,22 +121,22 @@ public class LoginDialog extends JDialog {
         out.println(hashedPass);
         out.close();
 
-//        in = parentFrame.getClient().getIn();
-//        String response = null;
-//        try {
-//            response = in.readLine();
-//        } catch (IOException e) {
-//            System.out.println("Error: " + e.getMessage());
-//            dispose();
-//        }
-//        if(response.contentEquals("fail") {
+        in = parentFrame.getClient().getIn();
+        String response = null;
+        try {
+            response = in.readLine();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+            dispose();
+        }
+        return true;
+//        if(response.contentEquals("0")) {
 //            return false;
 //        } else {
-        parentFrame.getClient().getMainFrame().setUsername(username);
+////        parentFrame.getClient().getMainFrame().setUsername(username);
 //            return true;
 //        }
 
-        return true;
     }
 
 

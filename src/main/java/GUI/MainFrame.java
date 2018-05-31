@@ -84,7 +84,7 @@ public class MainFrame extends JFrame {
         this.remove(loginButton);
         this.remove(createAccountButton);
 
-        loggedInUser = new JButton(username + "s Library");
+        loggedInUser = new JButton(username + "'s Library");
         loggedInUser.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 library = new Library(client);

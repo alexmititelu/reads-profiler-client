@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 
@@ -113,20 +114,20 @@ public class CreateAccount extends JDialog {
         out.println(hashedPass);
         out.close();
 
-//         in = parentFrame.getClient().getIn();
-//        String response = null;
-//        try {
-//            response = in.readLine();
-//        } catch (IOException e) {
-//            System.out.println("Error: " + e.getMessage());
-//            dispose();
-//        }
-//        if(response.contentEquals("fail") {
-//            return false;
-//        } else {
-//            return true;
-//        }
-        return true;
+         in = parentFrame.getClient().getIn();
+        String response = null;
+        try {
+            response = in.readLine();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+            dispose();
+        }
+        if(response.contentEquals("0")) {
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
 
