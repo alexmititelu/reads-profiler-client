@@ -107,9 +107,10 @@ public class RatingDialog extends JDialog {
 
         out = parentFrame.getClient().getOut();
         out.println(5);
+        out.flush();
         out.println(isbn);
         out.println(rating);
-        out.close();
+        out.flush();
         return true;
     }
 }

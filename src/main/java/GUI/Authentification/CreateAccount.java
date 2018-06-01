@@ -25,7 +25,7 @@ public class CreateAccount extends JDialog {
 
     public CreateAccount(MainFrame parentFrame) {
         super(parentFrame, "Create", true);
-        //
+
         this.parentFrame = parentFrame;
 
         JPanel panel = new JPanel(new GridBagLayout());
@@ -109,10 +109,11 @@ public class CreateAccount extends JDialog {
 
         out = parentFrame.getClient().getOut();
         out.println(2);
+        out.flush();
         out.println(username);
         String hashedPass = Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
         out.println(hashedPass);
-        out.close();
+        out.flush();
 
          in = parentFrame.getClient().getIn();
         String response = null;

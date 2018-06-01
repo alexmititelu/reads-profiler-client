@@ -41,6 +41,7 @@ public class Library extends JFrame {
         ratingButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 RatingDialog ratingDialog = new RatingDialog(client.getMainFrame());
+                table.recreate();
             }
         });
         this.add(ratingButton);

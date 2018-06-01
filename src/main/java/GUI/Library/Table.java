@@ -11,7 +11,7 @@ import java.util.List;
 public class Table extends JTable {
     private String[] columnNames = {"Gen","Autor","Titlu","An aparitie","ISBN","Rating"};
 
-    DefaultTableModel data = new DefaultTableModel(columnNames,6);
+    DefaultTableModel data ;
 
 
     private PrintWriter out;
@@ -24,20 +24,27 @@ public class Table extends JTable {
     }
 
     private void init() {
+        recreate();
+    }
+    public void recreate(){
+        data = new DefaultTableModel(columnNames,6);
         List<String> row = new ArrayList<String>();
         out.println(6);
+        out.flush();
         String gen;
         String autor;
         String titlu;
         String an;
         String isbn;
         String rating;
+        Integer count=-1;
         try {
             while (true) {
                 gen = in.readLine();
                 if (gen.contains("-1")) {
                     break;
                 }
+                count++;
                 autor = in.readLine();
                 titlu = in.readLine();
                 an = in.readLine();
@@ -50,7 +57,7 @@ public class Table extends JTable {
                 row.add(isbn);
                 row.add(rating);
 
-                data.addRow(row.toArray());
+                data.insertRow(count,row.toArray());
 
                 row.clear();
             }
@@ -59,7 +66,6 @@ public class Table extends JTable {
         }
 
         this.setModel(data);
-
     }
 
 

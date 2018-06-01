@@ -116,10 +116,11 @@ public class LoginDialog extends JDialog {
 
         out = parentFrame.getClient().getOut();
         out.println(1);
+        out.flush();
         out.println(username);
         String hashedPass = Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
         out.println(hashedPass);
-        out.close();
+        out.flush();
 
         in = parentFrame.getClient().getIn();
         String response = null;
@@ -129,13 +130,12 @@ public class LoginDialog extends JDialog {
             System.out.println("Error: " + e.getMessage());
             dispose();
         }
-        return true;
-//        if(response.contentEquals("0")) {
-//            return false;
-//        } else {
-////        parentFrame.getClient().getMainFrame().setUsername(username);
-//            return true;
-//        }
+        if(response.contentEquals("0")) {
+            return false;
+        } else {
+            parentFrame.getClient().getMainFrame().setUsername(username);
+           return true;
+        }
 
     }
 

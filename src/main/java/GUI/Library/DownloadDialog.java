@@ -92,8 +92,9 @@ public class DownloadDialog extends JDialog {
 
         out = parentFrame.getClient().getOut();
         out.println(3);
+        out.flush();
         out.println(isbn);
-        out.close();
+        out.flush();
 
         Document document = new Document();
         try {
@@ -109,7 +110,7 @@ public class DownloadDialog extends JDialog {
 
         String line = null;
         Chunk lineForPdf = null;
-
+        in=parentFrame.getClient().getIn();
         while(true) {
             try {
                 line = in.readLine();
@@ -130,5 +131,6 @@ public class DownloadDialog extends JDialog {
         document.close();
 
         return true;
+
     }
 }

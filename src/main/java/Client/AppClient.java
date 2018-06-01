@@ -48,7 +48,7 @@ public class AppClient {
     public void init() {
         try {
             socket = new Socket(SERVER_ADDRESS, PORT);
-            out = new PrintWriter(socket.getOutputStream(), true);
+            out = new PrintWriter(socket.getOutputStream());
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             System.out.println("Bine ai venit in aplicatia ReadsProfiler!");
             mainFrame = new MainFrame(this);
