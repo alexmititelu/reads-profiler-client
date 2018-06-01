@@ -109,10 +109,11 @@ public class DownloadDialog extends JDialog {
         Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
 
         String line = null;
-        Chunk lineForPdf = null;
+        Paragraph lineForPdf = null;
         in=parentFrame.getClient().getIn();
         while(true) {
             try {
+
                 line = in.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -120,7 +121,7 @@ public class DownloadDialog extends JDialog {
             if(line.contentEquals("-1")) {
                 break;
             }
-            lineForPdf = new Chunk(line,font);
+            lineForPdf = new Paragraph(line,font);
             try {
                 document.add(lineForPdf);
             } catch (DocumentException e) {
